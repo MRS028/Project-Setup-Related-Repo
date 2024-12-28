@@ -29,11 +29,11 @@ React Router is used for handling navigation in the React app.
 npm install react-router-dom
 ```
 
-Example Routing Setup in `main.jsx`:
+Example Routing Setup in `Router.jsx`:
 ```jsx
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
-const router = createBrowserRouter([
+const Router = createBrowserRouter([
   {
     path: "/",
     element: <div>Home Page</div>,
@@ -43,11 +43,32 @@ const router = createBrowserRouter([
     element: <div>About Page</div>,
   },
 ]);
+export default Router;
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />
-);
+
 ```
+
+
+Example Routing Setup in `Main.jsx`:
+```jsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import { RouterProvider } from "react-router-dom";
+import Router from "./Router/Router";
+
+
+
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
+    <RouterProvider router={Router} />
+  </StrictMode>
+);
+
+
+``` 
+
+
 
 ### 🛠️ Step 3: Install Additional Libraries
 LocalForage for offline storage, MatchSorter for sorting, and SortBy for data operations.
