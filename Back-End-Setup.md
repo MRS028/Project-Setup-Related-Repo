@@ -17,6 +17,8 @@ This guide provides step-by-step instructions and npm commands to set up a backe
 ## 🛠️ Project Initialization
 1. **Initialize a New Node.js Project**
    ```bash
+   mkdir project_name
+   cd project_name
    npm init -y
    ```
 
