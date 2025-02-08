@@ -87,9 +87,10 @@ Framer Motion helps in creating fluid animations.
 ```bash
 npm install framer-motion
 ```
-
+-----------------------------------------
 ### 🛠️ Step 6: Tailwind CSS and DaisyUI Setup
 
+### **Tailwind version-3**
 Install Tailwind CSS and related tools.
 ```bash
 npm install -D tailwindcss postcss autoprefixer
@@ -121,6 +122,38 @@ Add DaisyUI to Tailwind plugins in `tailwind.config.js`:
 plugins: [require('daisyui')];
 ```
 
+
+#### *Tailwind Version-4 and Daisyui Setup
+**🛠️ Step-1:** Install Tailwind Version-4
+```npm install tailwindcss @tailwindcss/vite```
+**Step-2:**  Now `Vite.cpmfig.js` or `vite.config.ts` update Tailwind like:
+```
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react(),tailwindcss()],
+})
+
+```
+**🛠️ Step-3:** At `index.css` add tailwind
+```
+@import "tailwindcss";
+```
+
+### **For Daisyui Installation**
+🛠️**Step-1:** At Terminal write: 
+```
+npm i -D daisyui@beta
+```
+🛠️**Step-2:** At `index.css` add 
+```
+@plugin "daisyui";
+```
+###**Tailwind and Daisyui Setup Done**
+------------------------------------------
 ## 🔥 Firebase Setup
 
 ### 🛠️ Step 7: Firebase Setup
