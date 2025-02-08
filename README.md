@@ -123,7 +123,7 @@ plugins: [require('daisyui')];
 ```
 
 
-#### *Tailwind Version-4 and Daisyui Setup
+#### Tailwind Version-4 and Daisyui Setup
 **🛠️ Step-1:** Install Tailwind Version-4
 
 
@@ -132,7 +132,7 @@ npm install tailwindcss @tailwindcss/vite
 ```
 
 
-**Step-2:**  Now `Vite.cpmfig.js` or `vite.config.ts` update Tailwind like:
+🛠️**Step-2:**  Now `Vite.cpmfig.js` or `vite.config.ts` update Tailwind like:
 
 ```bash
 import { defineConfig } from 'vite'
