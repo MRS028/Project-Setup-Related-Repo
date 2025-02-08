@@ -125,9 +125,16 @@ plugins: [require('daisyui')];
 
 #### *Tailwind Version-4 and Daisyui Setup
 **🛠️ Step-1:** Install Tailwind Version-4
-```npm install tailwindcss @tailwindcss/vite```
-**Step-2:**  Now `Vite.cpmfig.js` or `vite.config.ts` update Tailwind like:
+
+
+```bash
+npm install tailwindcss @tailwindcss/vite
 ```
+
+
+**Step-2:**  Now `Vite.cpmfig.js` or `vite.config.ts` update Tailwind like:
+
+```bash
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
@@ -138,18 +145,23 @@ export default defineConfig({
 })
 
 ```
-**🛠️ Step-3:** At `index.css` add tailwind
-```
+**🛠️ Step-3:** At `index.css` add Tailwind
+
+```css
 @import "tailwindcss";
 ```
 
 ### **For Daisyui Installation**
+
+
 🛠️**Step-1:** At Terminal write: 
-```
+
+```bash
 npm i -D daisyui@beta
 ```
 🛠️**Step-2:** At `index.css` add 
-```
+
+```css
 @plugin "daisyui";
 ```
 ###**Tailwind and Daisyui Setup Done**
