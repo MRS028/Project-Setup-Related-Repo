@@ -1,37 +1,36 @@
-Here's a comprehensive step-by-step guide to set up a React project with TypeScript, Redux, Tailwind CSS, Shadcn UI, and DaisyUI:
+Here's a complete guide to set up your React project with TypeScript, Redux, Tailwind, Shadcn, and DaisyUI using Vite for the `npm run dev` experience:
 
-### 1. Create React App with TypeScript
+### 1. Create Project with Vite + TypeScript
 ```bash
-npx create-react-app my-app --template typescript
+npm create vite@latest my-app -- --template react-ts
 cd my-app
 ```
 
-### 2. Install Required Packages
+### 2. Install Dependencies
 ```bash
-# Redux Toolkit
+# Core dependencies
 npm install @reduxjs/toolkit react-redux
 
-# Tailwind CSS
-npm install -D tailwindcss postcss autoprefixer
+# Tailwind + DaisyUI
+npm install -D tailwindcss postcss autoprefixer daisyui
 npx tailwindcss init -p
-
-# DaisyUI (Tailwind plugin)
-npm install -D daisyui
 
 # Shadcn UI
 npm install -g shadcn-ui
 npx shadcn-ui@latest init
 
-# Additional utilities
-npm install @types/node @types/react @types/react-dom
+# Additional dev dependencies
+npm install -D @types/node @types/react @types/react-dom
 ```
 
 ### 3. Configure Tailwind CSS
 **`tailwind.config.js`:**
 ```javascript
-module.exports = {
+/** @type {import('tailwindcss').Config} */
+export default {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {},
@@ -109,46 +108,40 @@ export default counterSlice.reducer;
 ```
 
 ### 6. Configure Redux Provider
-**`src/index.tsx`:**
+**`src/main.tsx`:**
 ```typescript
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
-import './index.css';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { Provider } from 'react-redux'
+import { store } from './app/store'
+import App from './App.tsx'
+import './index.css'
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-
-root.render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>
-);
+  </React.StrictMode>,
+)
 ```
 
-### 7. Create Redux Hooks (Optional)
+### 7. Create Redux Hooks
 **`src/app/hooks.ts`:**
 ```typescript
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState, AppDispatch } from './store';
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
-export const useAppSelector: <T>(selector: (state: RootState) => T) => T = 
-  useSelector;
+export const useAppSelector: <T>(selector: (state: RootState) => T) => T = useSelector;
 ```
 
-### 8. Example Component Using Redux + UI Libraries
+### 8. Example Component
 **`src/App.tsx`:**
 ```typescript
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { decrement, increment } from './features/counter/counterSlice';
 import { Button } from './components/ui/button';
-import './App.css';
 
 function App() {
   const count = useAppSelector((state) => state.counter.value);
@@ -213,31 +206,30 @@ function App() {
 export default App;
 ```
 
-### 9. Add Shadcn Components (Example)
+### 9. Add Shadcn Components
 ```bash
 npx shadcn-ui@latest add button card input
 ```
 
 ### 10. Run the Application
 ```bash
-npm start
+npm run dev
 ```
 
 ### Key Configuration Notes:
-1. **Tailwind + DaisyUI + Shadcn Coexistence**:
-   - DaisyUI provides pre-styled components
-   - Shadcn provides customizable components with CSS variables
-   - Both work together but avoid mixing similar components
+1. **Vite Configuration**:
+   - Uses Vite instead of Create React App for faster development
+   - Default `npm run dev` starts on port 5173
 
 2. **Redux Setup**:
    - Centralized store configuration
-   - Type-safe state management
+   - Type-safe state management with TypeScript
    - Custom hooks for cleaner component code
 
 3. **UI Libraries**:
-   - Use DaisyUI for quick prototyping with pre-built components
-   - Use Shadcn for customizable, accessible components
-   - Both use Tailwind CSS under the hood
+   - DaisyUI: Pre-styled components with built-in themes
+   - Shadcn: Customizable components with CSS variables
+   - Both work together but avoid mixing similar components
 
 4. **Project Structure**:
 ```
@@ -251,8 +243,8 @@ src/
 │   └── counter/
 │       └── counterSlice.ts
 ├── App.tsx
-├── index.css
-└── index.tsx
+├── main.tsx
+└── index.css
 ```
 
 ### Additional Recommendations:
@@ -278,15 +270,32 @@ npm install -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
 ```json
 {
   "compilerOptions": {
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["./src/*"]
     }
   }
 }
 ```
 
+**`vite.config.ts`**:
+```typescript
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import path from 'path'
+
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+})
+```
+
 This setup gives you a modern React application with:
+- Fast development server with Vite (`npm run dev`)
 - Type safety with TypeScript
 - Predictable state management with Redux Toolkit
 - Utility-first styling with Tailwind CSS
